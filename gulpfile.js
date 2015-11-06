@@ -73,9 +73,9 @@ var cache = require('gulp-cache');
 // Watch for changes in our custom assets
 gulp.task('watch', function() {
   // Watch .js files
-  gulp.watch(assets + 'js/*.js', ['scripts']);
+  gulp.watch(assets + 'js/*.js', ['customeScripts']);
   // Watch .scss files
-  gulp.watch(assets + 'scss/*.less', ['less']);
+  gulp.watch(assets + 'less/*.less', ['less']);
   // Watch image files
   gulp.watch(assets + 'images/**/*', ['images']);
  });
