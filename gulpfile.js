@@ -43,6 +43,7 @@ gulp.task('vendorScripts', ['bower'], function() {
 // Preprocess CSS
 var less = require('gulp-less');
 var path = require('path');
+var minifyCss = require('gulp-minify-css');
 
 gulp.task('less', ['bower'], function () {
   return gulp.src(assets +'less/main.less')
@@ -50,6 +51,7 @@ gulp.task('less', ['bower'], function () {
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
     .pipe(rename({suffix: '.min'}))
+    .pipe(minifyCss())
     .pipe(gulp.dest(destination + 'css'));
 });
 
