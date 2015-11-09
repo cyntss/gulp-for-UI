@@ -77,7 +77,7 @@ gulp.task('watch', function() {
   // Watch .js files
   gulp.watch(assets + 'js/*.js', ['customeScripts']);
   // Watch .scss files
-  gulp.watch(assets + 'less/*.less', ['less']);
+  gulp.watch(assets + 'less/*.less', ['less', 'fontawesomeCSS']);
   // Watch image files
   gulp.watch(assets + 'images/**/*', ['images']);
  });
