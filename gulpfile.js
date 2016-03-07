@@ -87,7 +87,7 @@ gulp.task('watch', function() {
 
 // Run python server on localhost:8000
 var shell = require('gulp-shell');
-gulp.task('runServer', shell.task([
+gulp.task('serve', shell.task([
   serverCommand
 ]))
 
