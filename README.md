@@ -5,28 +5,37 @@
 
 All you have to do is:
 
+1.Clone the repository locally in your computer
 ```
 Git clone git@github.com:cyntss/gulp-for-UI.git
 ```
-We clone the repository locally in your computer
+2.Locate ourselves in the directory just created
 ```
 cd gulp-for-ui
 ```
-We locate ourselves in the directory just created
+3.We need Bower installed in our computer, and so we do.
 ```
 npm install -g bower
 ```
-We need Bower installed in our computer, and so we do.
-
+4.We install now Gulp, globally.
 ```
 npm install -g gulp
 ```
-We install now Gulp, globally.
+5.Install all node packages
 
+```
+npm install
+```
+6.Run Gulp. This will build all your assets, start a watch stask to check if any asset is modified (in which case it will re-build the assets again) and run a localhost:8000
 ```
 gulp
 ```
-Run Gulp to start all the tasks
+
+or if you only wanna run the server
+```
+gulp serve
+```
+
 
 ### The magic of this script is:
 - Just cloning the repo and running GULP you will have a directory ready to start designing a UI in bootstrap with fontawesome included.
