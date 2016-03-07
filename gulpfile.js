@@ -4,21 +4,24 @@ var gulp = require('gulp');
 // Define main directories
 var assets = 'assets/';
 var destination = 'build/';
-var bowerDir = 'vendors/' ;
+var bowerDir = 'vendors/';
+// If you are running on OSX or Linux
 var serverCommand = 'python -m SimpleHTTPServer';
+// If you are running on Windows
+// var serverCommand = 'python -m http.server 8000';
 
 // Run Bower
 var bower = require('gulp-bower');
 
-gulp.task('bower', function() { 
+gulp.task('bower', function() {
   return bower()
-    .pipe(gulp.dest(bowerDir)) 
+    .pipe(gulp.dest(bowerDir))
 });
 
 // Move Fontawesome fonts to Build
-gulp.task('icons', ['bower'], function() { 
-  return gulp.src(bowerDir + '/font-awesome/fonts/**.*') 
-    .pipe(gulp.dest(destination + 'fonts')); 
+gulp.task('icons', ['bower'], function() {
+  return gulp.src(bowerDir + '/font-awesome/fonts/**.*')
+    .pipe(gulp.dest(destination + 'fonts'));
 });
 
 // Concatenate & Minify JS
@@ -43,21 +46,21 @@ gulp.task('vendorScripts', ['bower'], function() {
 // Preprocess CSS
 var less = require('gulp-less');
 var path = require('path');
-var minifyCss = require('gulp-minify-css');
+var cssnano = require('gulp-cssnano');
 
 gulp.task('less', ['bower'], function () {
   return gulp.src(assets +'less/main.less')
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
+    .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
-    .pipe(minifyCss())
     .pipe(gulp.dest(destination + 'css'));
 });
 
 // Add Fontawesome css to the minified main.min.js
-gulp.task('fontawesomeCSS', ['bower', 'less'], function() { 
-  return gulp.src([bowerDir + 'font-awesome/css/*.min.css', destination + 'css/main.min.css']) 
+gulp.task('fontawesomeCSS', ['bower', 'less'], function() {
+  return gulp.src([bowerDir + 'font-awesome/css/*.min.css', destination + 'css/main.min.css'])
     .pipe(concat('main.min.css'))
     .pipe(gulp.dest(destination + 'css'));
 });
@@ -89,4 +92,4 @@ gulp.task('runServer', shell.task([
 ]))
 
 // Default Task
-gulp.task('default', ['bower', 'customeScripts', 'vendorScripts', 'images', 'less', 'icons', 'fontawesomeCSS', 'watch', 'runServer']);
+gulp.task('default', ['bower', 'customeScripts', 'vendorScripts', 'images', 'less', 'icons', 'fontawesomeCSS', 'watch', 'serve']);
